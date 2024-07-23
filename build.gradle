@@ -1,0 +1,25 @@
+plugins {
+    id 'org.springframework.boot' version '2.0.6.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+group = 'com.universe.demo'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '8'
+
+repositories {
+    //mavenCentral()
+    maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
+    implementation 'org.elasticsearch.client:transport:5.6.16'
+   // implementation 'org.springframework.data:spring-data-elasticsearch:3.1.15.RELEASE' // 注意版本兼容性
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    compileOnly 'org.projectlombok:lombok:1.18.10'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+}
