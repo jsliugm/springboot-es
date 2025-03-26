@@ -3,6 +3,7 @@ package com.universe.controller;
 import com.universe.domain.Person;
 import com.universe.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -33,7 +34,7 @@ public class PersonController {
     }
 
     @GetMapping("/address/{address}")
-    public Iterable<Person> findByAddress(@PathVariable String address) {
+    public Object findByAddress(@PathVariable String address) {
         return personService.findByAddress(address);
     }
 
@@ -41,4 +42,15 @@ public class PersonController {
     public Iterable<Person> findAllPersons() {
         return personService.findAllPersons();
     }
+
+    @GetMapping("/deleteIndex")
+    public Object deleteIndex() {
+        return personService.deleteIndex();
+    }
+
+    @GetMapping("/search/page/{name}/{page}/{pageSize}")
+    public Object findPagePersonByName(@PathVariable String name, @PathVariable int page, @PathVariable int pageSize) {
+        return personService.findByName(name, page, pageSize);
+    }
+
 }

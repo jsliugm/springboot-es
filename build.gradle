@@ -1,7 +1,20 @@
+// 在build.gradle文件中配置
+buildscript {
+    repositories {
+        maven {
+            url = uri("https://plugins.gradle.org/m2/")
+        }
+    }
+    dependencies {
+        classpath("com.github.ben-manes:gradle-versions-plugin:0.51.0")
+    }
+}
+
 plugins {
     id 'org.springframework.boot' version '2.0.6.RELEASE'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
+    id("com.github.ben-manes.versions") version "0.51.0"
 }
 
 group = 'com.universe.demo'
@@ -16,10 +29,22 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
     implementation 'org.elasticsearch.client:transport:5.6.16'
-   // implementation 'org.springframework.data:spring-data-elasticsearch:3.1.15.RELEASE' // 注意版本兼容性
+   //implementation 'org.springframework.data:spring-data-elasticsearch:3.1.15.RELEASE' // 注意版本兼容性
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     compileOnly 'org.projectlombok:lombok:1.18.10'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'com.github.xiaoymin:knife4j-spring-boot-starter:2.0.5'
+}
 
+
+
+// 启用进度条显示
+tasks.compileJava {
+    doFirst {
+        project.logger.lifecycle('Starting compileJava...')
+    }
+    doLast {
+        project.logger.lifecycle('Finished compileJava.')
+    }
 }
